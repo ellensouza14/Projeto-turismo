@@ -1,0 +1,451 @@
+/* ====================================================
+   1. RESET E VARIÁVEIS DE CORES
+==================================================== */
+
+/* Seletor universal (*) aplica regras a todos os elementos da página */
+* {
+    margin: 0;           /* Remove a margem padrão externa de todos os elementos */
+    padding: 0;          /* Remove o espaçamento interno padrão de todos os elementos */
+    box-sizing: border-box; /* Garante que padding e bordas não aumentem a largura/altura total dos elementos */
+}
+
+/* :root armazena variáveis globais de cores reutilizáveis em todo o CSS */
+:root {
+    --bege-fundo: #EFEBE1;    /* Cor de fundo principal do site (bege claro) */
+    --marrom-escuro: #23211F;  /* Cor usada em cards de destaque e elementos escuros */
+    --preto-rodape: #0F0F0F;   /* Cor preta sólida exclusiva para o rodapé */
+    --marrom-cta: #723A24;     /* Cor de destaque marrom para chamadas de ação (CTA) */
+    --dourado-btn: #C69C6D;    /* Cor dourada usada em botões principais e detalhes */
+    --laranja-texto: #A24E34;  /* Cor laranja/terrosa usada para pequenos títulos e categorias */
+    --cinza-texto: #666666;    /* Cor cinza suave usada para textos de parágrafos secundários */
+}
+
+/* Estilização base aplicada a todo o corpo (body) da página */
+body {
+    font-family: 'Inter', sans-serif; /* Define a fonte principal do texto como 'Inter' */
+    background-color: var(--bege-fundo); /* Aplica a cor de fundo bege usando a variável */
+    color: #333333;                   /* Define a cor padrão dos textos como cinza escuro */
+}
+
+/* Aplica a fonte elegante 'Playfair Display' a todos os títulos da página (H1 até H6) */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+}
+
+
+/* ====================================================
+   2. HEADER E HERO UNIFICADOS (Fundo transparente sobre a foto)
+==================================================== */
+
+/* Seção principal da Hero (banner de boas-vindas no topo) */
+.hero {
+    padding: 150px 80px 60px 80px; /* Espaçamento interno: 150px em cima, 80px nas laterais, 60px embaixo */
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), 
+                url('assets/img/hero.jpeg') center/cover; /* Cria um degradê escuro translúcido por cima da imagem de fundo centralizada */
+    color: white;                  /* Define a cor padrão do texto dentro da hero como branco */
+    display: flex;                 /* Ativa o layout Flexbox para organizar os itens */
+    flex-direction: column;        /* Organiza os elementos filhos em formato de coluna (vertical) */
+    align-items: flex-start;       /* Alinha todos os elementos filhos à esquerda */
+    min-height: 100vh;             /* Garante que a hero ocupe no mínimo 100% da altura da tela visível */
+}
+
+/* O Header (cabeçalho) fica flutuando por cima da imagem de fundo */
+header {
+    background-color: transparent; /* Deixa o fundo do cabeçalho totalmente transparente */
+    width: 100%;                   /* Faz o cabeçalho ocupar 100% da largura da tela */
+    position: absolute;            /* Retira o header do fluxo normal da página para flutuar */
+    top: 0;                        /* Gruda o header perfeitamente no topo da tela */
+    left: 0;                       /* Gruda o header na borda esquerda da tela */
+    z-index: 100;                  /* Joga o header para uma camada superior, garantindo que fique acima de tudo */
+}
+
+/* Container interno da navegação (organiza logo e menu) */
+.nav {
+    display: flex;                 /* Usa Flexbox para alinhar os itens horizontalmente */
+    justify-content: space-between;/* Joga a logo para a esquerda e o menu para a direita */
+    align-items: center;           /* Centraliza os itens verticalmente na mesma linha */
+    padding: 30px 80px;            /* Espaçamento interno ao redor da barra de navegação */
+}
+
+/* Estilização da imagem da logomarca */
+.logo {
+    height: 60px;                  /* Fixa a altura da logo em 60 pixels */
+    width: auto;                   /* Mantém a proporção automática da largura */
+    object-fit: contain;           /* Garante que a imagem caiba perfeitamente sem distorcer */
+    border-radius: 8px;            /* Arredonda levemente as bordas da logo */
+}
+
+/* Estilização dos links dentro da barra de navegação */
+.nav a {
+    color: white;                  /* Deixa os links do menu com texto branco */
+    text-decoration: none;         /* Remove o sublinhado padrão dos links */
+    font-size: 0.95rem;            /* Define o tamanho da fonte dos links */
+    font-weight: 500;              /* Deixa o peso da fonte um pouco mais encorpado (médio) */
+    transition: 0.3s;              /* Adiciona suavidade de 0.3 segundos em efeitos de alteração */
+}
+
+/* Efeito ao passar o mouse por cima dos links do menu */
+.nav a:hover {
+    color: var(--dourado-btn);     /* Altera a cor do texto para dourado ao receber hover */
+}
+
+/* Estilização do botão especial dentro da barra de navegação */
+.btn-nav {
+    background: transparent;       /* Fundo totalmente transparente */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Cria uma borda fina branca semi-transparente */
+    padding: 12px 24px;            /* Espaçamento interno (altura e largura do botão) */
+    color: white;                  /* Texto branco */
+    border-radius: 50px;           /* Arredonda totalmente as pontas (formato pílula) */
+    font-weight: 500;              /* Peso da fonte médio */
+    cursor: pointer;               /* Muda o cursor do mouse para a mãozinha ao passar por cima */
+    transition: 0.3s;              /* Transição suave de 0.3s para animações */
+}
+
+/* Efeito ao passar o mouse por cima do botão da navbar */
+.btn-nav:hover {
+    background-color: white;       /* Preenche o fundo com branco sólido */
+    color: black;                  /* Muda a cor do texto para preto gerando alto contraste */
+}
+
+/* Container interno que segura os títulos, botões e textos da Hero */
+.hero-content-wrapper {
+    padding: 0 80px;               /* Espaçamento interno lateral */
+    flex: 1;                       /* Faz o container ocupar todo o espaço flexível disponível */
+    display: flex;                 /* Usa Flexbox */
+    flex-direction: column;        /* Organiza os itens em coluna */
+    justify-content: center;       /* Centraliza o conteúdo verticalmente */
+    align-items: flex-start;       /* Alinha os itens à esquerda */
+}
+
+
+/* ====================================================
+   3. HERO SECTION E CARDS DE INFORMAÇÃO
+==================================================== */
+
+/* Estilização da tag de subtítulo (h6) dentro do elemento com ID #sub */
+#sub h6 {
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo preto translúcido escuro */
+    padding: 6px 12px;             /* Espaçamento interno compacto */
+    border-radius: 20px;           /* Arredonda as bordas da tag */
+    font-size: 0.75rem;            /* Fonte bem pequena */
+    font-weight: 600;              /* Texto semi-negrito */
+    letter-spacing: 1px;           /* Espaçamento leve entre as letras */
+    margin-bottom: 20px;           /* Margem inferior para afastar do próximo elemento */
+    display: inline-block;         /* Faz a tag ocupar apenas o espaço do próprio texto */
+    font-family: 'Inter', sans-serif; /* Força a fonte 'Inter' neste elemento */
+}
+
+/* Estilização do título principal (H3) da Hero */
+.hero h3 {
+    font-size: 4rem;               /* Aumenta bastante o tamanho da fonte do título */
+    margin-bottom: 20px;           /* Margem inferior de espaçamento */
+}
+
+/* Estilização do parágrafo principal localizado diretamente dentro da Hero */
+.hero > p {
+    font-size: 1.2rem;             /* Tamanho de fonte um pouco maior que o padrão */
+    line-height: 1.6;              /* Altura entre as linhas para facilitar a leitura */
+    margin-bottom: 30px;           /* Margem inferior */
+    max-width: 600px;              /* Limita a largura máxima para o texto não ficar muito longo */
+    font-family: 'Inter', sans-serif; /* Define a fonte como 'Inter' */
+}
+
+/* Estilização do botão principal de destaque ("Call to Action") da Hero */
+.btn-hero {
+    background-color: var(--dourado-btn); /* Aplica a cor de fundo dourada */
+    color: black;                  /* Texto em preto para contraste */
+    padding: 16px 32px;            /* Espaçamento interno robusto */
+    border: none;                  /* Remove qualquer borda padrão */
+    border-radius: 50px;           /* Deixa o botão totalmente arredondado (estilo pílula) */
+    font-weight: 600;              /* Texto em negrito */
+    cursor: pointer;               /* Cursor de mãozinha ao passar por cima */
+    margin-bottom: 60px;           /* Margem inferior grande */
+    transition: 0.3s;              /* Transição suave para efeitos de hover */
+}
+
+/* Efeito ao passar o mouse por cima do botão principal da hero */
+.btn-hero:hover {
+    background-color: #d8ae7e;     /* Muda para um tom de dourado mais claro */
+    transform: translateY(-2px);   /* Efeito sutil de levitação para cima (2 pixels) */
+}
+
+/* Esconde qualquer imagem solta que esteja diretamente dentro da hero (evita duplicidade com o fundo) */
+.hero > img {
+    display: none; 
+}
+
+/* Estilização dos 3 containers informativos localizados na parte inferior da Hero */
+.conteiner {
+    background-color: var(--marrom-escuro); /* Fundo com marrom escuro das variáveis */
+    color: white;                  /* Texto branco */
+    padding: 30px;                 /* Espaçamento interno de 30px em todas as direções */
+    border-radius: 12px;           /* Cantos levemente arredondados */
+    margin-bottom: 20px;           /* Margem inferior para separar os blocos */
+    width: 100%;                   /* Largura total disponível */
+    max-width: 400px;              /* Largura máxima limitada para manter o design compacto */
+}
+
+/* Estilização das imagens/ícones dentro dos containers informativos */
+.conteiner img {
+    width: 32px;                   /* Largura fixa de 32px para o ícone */
+    height: 32px;                  /* Altura fixa de 32px para o ícone */
+    margin-bottom: 15px;           /* Margem abaixo do ícone */
+    filter: brightness(0) invert(1); /* Truque CSS para transformar qualquer ícone original em cor branca pura */
+}
+
+/* Estilização dos títulos (H2) de cada container informativo */
+.conteiner h2 {
+    font-family: 'Inter', sans-serif; /* Usa a fonte 'Inter' em vez da Playfair */
+    font-size: 1.2rem;             /* Tamanho médio da fonte */
+    margin-bottom: 10px;           /* Margem inferior */
+}
+
+/* Estilização dos parágrafos descritivos dentro dos containers informativos */
+.conteiner p {
+    font-size: 0.95rem;            /* Tamanho de fonte levemente menor */
+    color: #CCCCCC;                /* Cor cinza claro para suavizar a leitura */
+    line-height: 1.5;              /* Espaçamento entrelinhas confortável */
+}
+
+
+/* ====================================================
+   4. SECTION 1 (CARROSSEL / DESTINOS)
+==================================================== */
+
+/* Estilização geral da primeira seção de conteúdo (destinos) */
+.section1 {
+    padding: 80px;                 /* Espaçamento interno de 80px ao redor de toda a seção */
+    background-color: var(--bege-fundo); /* Fundo bege padrão da página */
+}
+
+/* Bloco de texto introdutório da seção 1 */
+.section1 .txt {
+    margin-bottom: 40px;           /* Margem inferior para separar o texto do carrossel */
+}
+
+/* Pequeno título (h5) de categoria dentro do bloco de texto da seção 1 */
+.section1 .txt h5 {
+    color: var(--laranja-texto);   /* Cor laranja/terrosa das variáveis */
+    font-size: 0.8rem;             /* Fonte pequena */
+    font-weight: 600;              /* Negrito */
+    letter-spacing: 2px;           /* Espaçamento amplo entre as letras */
+    text-transform: uppercase;     /* Transforma todas as letras em maiúsculas */
+    margin-bottom: 10px;           /* Margem inferior */
+    font-family: 'Inter', sans-serif; /* Fonte 'Inter' */
+}
+
+/* Título principal (H2) da seção 1 */
+.section1 .txt h2 {
+    font-size: 2.5rem;             /* Tamanho grande para destaque */
+    color: #222222;                /* Cor cinza bem escuro (quase preto) */
+    margin-bottom: 10px;           /* Margem inferior */
+}
+
+/* Parágrafo descritivo da seção 1 */
+.section1 .txt p {
+    color: var(--cinza-texto);     /* Usa a cor cinza padrão das variáveis */
+    font-size: 1rem;               /* Tamanho de fonte padrão */
+}
+
+/* Container estrutural do carrossel de destinos */
+.carrosel {
+    position: relative;            /* Define posicionamento relativo para ancorar os botões absolutos */
+    overflow: hidden;              /* Esconde tudo o que ultrapassar os limites laterais da caixa */
+    width: 100%;                   /* Ocupa 100% da largura disponível */
+}
+
+/* Trilha interna que enfileira os itens do carrossel lado a lado */
+.carrosel-track {
+    display: flex;                 /* Coloca os itens em linha horizontal */
+    gap: 30px;                     /* Espaçamento fixo de 30px entre cada card de destino */
+    transition: transform 0.4s ease-in-out; /* Animação suave de rolagem com duração de 0.4 segundos */
+}
+
+/* Estilização de cada card de destino individual dentro do carrossel */
+.conte {
+    min-width: 350px;              /* Largura mínima fixa para cada card não encolher */
+    background-color: white;       /* Fundo branco limpo para o card */
+    border-radius: 12px;           /* Cantos arredondados */
+    overflow: hidden;              /* Esconde partes de imagens que ultrapassem o arredondamento */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03); /* Adiciona uma sombra sutil e elegante no card */
+    padding-bottom: 25px;          /* Espaçamento interno apenas na parte inferior */
+}
+
+/* Estilização da imagem de capa de cada card de destino */
+.conte img {
+    width: 100%;                   /* Ocupa 100% da largura do card */
+    height: 250px;                 /* Altura fixa de 250px para padronizar todas as fotos */
+    object-fit: cover;             /* Corta a imagem proporcionalmente para preencher o espaço sem distorcer */
+}
+
+/* Pequeno título/categoria (h6) dentro do card de destino */
+.conte h6 {
+    color: var(--laranja-texto);   /* Cor laranja das variáveis */
+    font-size: 0.75rem;            /* Fonte pequena */
+    font-weight: 600;              /* Negrito */
+    text-transform: uppercase;     /* Letras maiúsculas */
+    margin: 20px 20px 5px 20px;    /* Margens superior, lateral e inferior personalizadas */
+    font-family: 'Inter', sans-serif; /* Fonte 'Inter' */
+}
+
+/* Título principal (H4) do card de destino */
+.conte h4 {
+    font-size: 1.5rem;             /* Tamanho médio-grande */
+    margin: 0 20px 10px 20px;      /* Margens laterais e inferior */
+    color: #222222;                /* Cor escura */
+}
+
+/* Texto descritivo (parágrafo) do card de destino */
+.conte p {
+    color: var(--cinza-texto);     /* Cor cinza de texto secundário */
+    font-size: 0.9rem;             /* Tamanho levemente menor */
+    line-height: 1.5;              /* Altura de linha para leitura fluida */
+    margin: 0 20px;                /* Margens nas laterais */
+}
+
+/* Estilização compartilhada dos botões de navegação (Anterior e Próximo) do carrossel */
+#prev, #next {
+    position: absolute;            /* Posicionamento absoluto em relação ao container .carrosel */
+    top: 50%;                      /* Posiciona exatamente no meio vertical do carrossel */
+    transform: translateY(-50%);   /* Puxa o botão para cima na metade de sua própria altura (centralização perfeita) */
+    background-color: rgba(0,0,0,0.5); /* Fundo preto semi-transparente */
+    color: white;                  /* Ícone/texto em branco */
+    border: none;                  /* Sem borda */
+    padding: 12px 16px;            /* Espaçamento interno do botão */
+    cursor: pointer;               /* Cursor de mãozinha */
+    border-radius: 50%;            /* Deixa o botão perfeitamente redondo */
+    font-size: 1rem;               /* Tamanho da fonte/ícone */
+    transition: 0.3s;              /* Transição suave para o efeito de hover */
+}
+
+/* Posiciona o botão de voltar ('prev') colado na lateral esquerda */
+#prev { left: 10px; }
+
+/* Posiciona o botão de avançar ('next') colado na lateral direita */
+#next { right: 10px; }
+
+/* Efeito ao passar o mouse por cima dos botões de navegação do carrossel */
+#prev:hover, #next:hover {
+    background-color: rgba(0,0,0,0.8); /* Escurece o fundo do botão para dar feedback visual */
+}
+
+
+/* ====================================================
+   5. SECTION 2 (ROTEIRO / CTA)
+==================================================== */
+
+/* Estilização da seção de chamada para ação intermediária (CTA) */
+.section2 {
+    background-color: var(--marrom-cta); /* Usa a cor de fundo marrom de CTA das variáveis */
+    color: white;                  /* Texto branco em toda a seção */
+    padding: 80px;                 /* Espaçamento interno grande de 80px */
+    border-radius: 20px;           /* Bordas bem arredondadas (20px) */
+    margin: 40px 80px;             /* Margem externa: 40px em cima/baixo e 80px nas laterais */
+    text-align: left;              /* Alinha todo o texto à esquerda */
+}
+
+/* Pequeno subtítulo (h5) dentro da seção 2 */
+.section2 h5 {
+    color: #E2B887;                /* Cor dourada/bege clara específica para este detalhe */
+    font-size: 0.8rem;             /* Fonte pequena */
+    font-weight: 600;              /* Negrito */
+    letter-spacing: 2px;           /* Espaçamento largo entre letras */
+    text-transform: uppercase;     /* Letras maiúsculas */
+    margin-bottom: 15px;           /* Margem inferior */
+    font-family: 'Inter', sans-serif; /* Fonte 'Inter' */
+}
+
+/* Título principal (H2) da seção 2 */
+.section2 h2 {
+    font-size: 2.8rem;             /* Título grande e impactante */
+    margin-bottom: 20px;           /* Margem inferior */
+}
+
+/* Subtítulo descritivo em formato de H4 na seção 2 */
+.section2 h4 {
+    font-size: 1.1rem;             /* Tamanho intermediário */
+    line-height: 1.6;              /* Espaçamento entrelinhas confortável */
+    color: rgba(255, 255, 255, 0.9); /* Branco com leve transparência (90%) */
+    margin-bottom: 30px;           /* Margem inferior */
+    font-family: 'Inter', sans-serif; /* Fonte 'Inter' */
+    font-weight: 400;              /* Peso da fonte normal (não negrito) */
+    max-width: 700px;              /* Limita a largura máxima do texto descritivo */
+}
+
+/* Estilização do botão específico da seção 2 */
+.btn-section2 {
+    background-color: var(--bege-fundo); /* Fundo com a cor bege de fundo da página */
+    color: var(--marrom-cta);      /* Texto com a cor marrom de CTA (inversão elegante de cores) */
+    padding: 16px 32px;            /* Espaçamento interno robusto */
+    border: none;                  /* Sem borda */
+    border-radius: 50px;           /* Arredondamento total em formato de pílula */
+    font-weight: 600;              /* Texto em negrito */
+    cursor: pointer;               /* Cursor de mãozinha */
+    transition: 0.3s;              /* Transição suave para hover */
+}
+
+/* Efeito ao passar o mouse no botão da seção 2 */
+.btn-section2:hover {
+    background-color: white;       /* Muda o fundo bege para branco puro ao receber hover */
+}
+
+
+/* ====================================================
+   6. RODAPÉ (FOOTER)
+==================================================== */
+
+/* Estilização do elemento principal do rodapé */
+footer {
+    background-color: var(--preto-rodape); /* Fundo preto escuro sólido usando a variável */
+    color: white;                  /* Texto branco padrão no rodapé */
+    padding: 60px 80px;            /* Espaçamento interno: 60px em cima/baixo e 80px nas laterais */
+    display: flex;                 /* Usa Flexbox */
+    flex-direction: column;        /* Organiza os blocos internos verticalmente em coluna */
+    gap: 30px;                     /* Espaçamento uniforme de 30px entre cada bloco filho */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Cria uma linha divisória bem sutil na borda superior */
+}
+
+/* Estilização dos títulos (H5) principais dentro do rodapé */
+footer h5 {
+    font-size: 1.2rem;             /* Tamanho médio da fonte */
+    letter-spacing: 2px;           /* Espaçamento entre as letras */
+}
+
+/* Estilização dos textos descritivos secundários (H6) no rodapé */
+footer h6 {
+    color: #888888;                /* Cor cinza intermediária para textos menos chamativos */
+    font-size: 0.9rem;             /* Fonte levemente menor */
+    font-weight: 400;              /* Peso normal */
+    font-family: 'Inter', sans-serif; /* Fonte 'Inter' */
+    max-width: 600px;              /* Limita a largura máxima do texto explicativo */
+    line-height: 1.5;              /* Altura de linha ajustada */
+}
+
+/* Agrupamento de navegação dentro do rodapé */
+footer nav {
+    display: flex;                 /* Usa Flexbox em coluna */
+    flex-direction: column;        
+    gap: 10px;                     /* Espaçamento de 10px entre os links do rodapé */
+}
+
+/* Estilização do subtítulo/cabeçalho de categorias de links no rodapé */
+footer nav h3 {
+    font-size: 1rem;               /* Tamanho padrão de texto */
+    font-family: 'Inter', sans-serif; /* Fonte 'Inter' */
+    color: var(--dourado-btn);     /* Usa a cor dourada para destacar as categorias do rodapé */
+    margin-bottom: 5px;            /* Pequena margem inferior */
+}
+
+/* Estilização dos links individuais dentro do rodapé */
+footer nav a {
+    color: #CCCCCC;                /* Cor cinza claro para os links */
+    text-decoration: none;         /* Remove o sublinhado dos links */
+    font-size: 0.9rem;             /* Tamanho compacto da fonte */
+    transition: 0.3s;              /* Transição suave para hover */
+    width: fit-content;            /* Faz o link ocupar apenas a largura exata do seu texto (evita cliques fantasma fora do texto) */
+}
+
+/* Efeito ao passar o mouse por cima dos links do rodapé */
+footer nav a:hover {
+    color: white;                  /* Muda a cor do texto para branco puro ao receber hover */
+}
